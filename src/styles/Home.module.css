@@ -3,13 +3,11 @@
   flex-direction: column;
   gap: 20px;
   max-width: 900px;
-  align-items: center;
   margin: 0px auto;
   padding: 6rem;
   min-height: 100vh;
 }
 
-.main input {
-  padding: 5px 10px;
-  border: none;
+.code {
+  margin: 10px 0px;
 }

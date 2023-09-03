@@ -6,6 +6,15 @@ import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const formCode = `<form>
+  <input
+    type="email"
+    name="email"
+    id="email"
+    placeholder="Enter your email" // comment me and deploy to verify you no longer see the error
+  />
+</form>`;
+
 export default function Home() {
   const [formData, setFormData] = useState({ email: "" });
 
@@ -28,22 +37,53 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <h1>Minified React error with simple form</h1>
+        <h2>Description</h2>
         <p>
-          This is a super simple, normal form with an email input and
-          placeholder value. In the project I encountered this issue I have
-          proper endpoint to handle the submission, etc. However, its actually
-          not necessary to show that by simply placing a placeholder value this
-          causes the &apos;Uncaught Error: Minified React error #425&apos; once
-          deployed on Vercel.
+          In this code we have a minimal implementation of a form with a single
+          input, using the <code>placeholder</code> attribute triggers a
+          Minified React error. With this repo, we can verify this.
         </p>
         <form>
           <input
             type="email"
             name="email"
             id="email"
-            placeholder="Enter your email"
+            placeholder="Enter your email" // comment me and deploy to verify you no longer see the error
           />
         </form>
+
+        <h2>Expected Results</h2>
+        <p>
+          We should be able to use <code>placeholder</code> attribute in our
+          code.
+        </p>
+        <h2>Actual Results</h2>
+        <p>
+          Using <code>placeholder</code> triggers Minified React Error
+        </p>
+
+        <h2>Steps to Reproduce</h2>
+        <p>
+          To test this out, fork{" "}
+          <a href="https://github.com/pulgaroja/input_with_placeholder">
+            this repo
+          </a>{" "}
+          and set it up to deploy with Vercel.
+          <ol>
+            <li>
+              Test by first deploying as is, on the live preview open your
+              console log, you&apos;ll see the Minified error logs
+            </li>
+            <li>update the code to comment the placeholder attribute</li>
+            <pre className={styles.code}>
+              <code>{formCode}</code>
+            </pre>
+            <li>
+              deploy and hard refresh the live preview, verify you don&apos;t
+              see the console errors anymore
+            </li>
+          </ol>
+        </p>
       </main>
     </>
   );
